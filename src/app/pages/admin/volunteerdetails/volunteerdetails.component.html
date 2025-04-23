@@ -1,0 +1,81 @@
+
+<div class="bg-gradient-to-r from-greenCustom to-green-500 text-white p-5 mb-[50px] text-center">
+  <h1 class="text-3xl font-bold mb-5"> Volunteer Records</h1>
+  <p class="text-1xl pb-[20px]">Empowering communities, one act of kindness at a time.</p>
+</div>
+
+<div class="max-w-screen-xl mx-auto p-4">
+  <div class="bg-white rounded-lg shadow-lg p-5">
+    <!-- Filter Section -->
+    <div class="flex flex-col md:flex-row justify-between gap-4 mb-5">
+      <div class="flex flex-wrap gap-3">
+
+        <select [(ngModel)]="selectedGender" (change)="applyFilters()" class="border rounded p-2">
+          <option value="">All Genders</option>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+          <option value="Other">Other</option>
+        </select>
+
+        <select [(ngModel)]="selectedAreaOfInterest" (change)="applyFilters()" class="border rounded p-2 ml-2">
+          <option value="">All Areas</option>
+          <option value="Education">Education</option>
+          <option value="Healthcare">Healthcare</option>
+          <option value="Food_and_Nutrition">Food and Nutrition</option>
+          <option value="Womens_Empowerment">Women's Empowerment</option>
+          <option value="Disaster_Relief">Disaster Relief</option>
+          <option value="Community_Development">Community Development</option>
+          <option value="Support_for_Differently_Abled">Support for Differently Abled</option>
+        </select>
+        
+
+        
+        <button (click)="resetFilter()" class="ml-4 bg-red-500 text-white px-3 py-1 rounded">Reset Filters</button>
+      </div>
+
+      <button (click)="downloadExcel()" class="bg-green-700 text-white px-4 py-2 rounded">
+        Download Report
+      </button>
+    </div>
+
+    <!-- Table -->
+    <table class="w-full border-collapse" *ngIf="volunteers.length > 0; else noVolunteers">
+      <thead>
+        <tr class="bg-gray-100 text-left">
+          <th class="p-3">Full Name</th>
+          <th class="p-3">Email</th>
+          <th class="p-3">Phone</th>
+          <th class="p-3">Gender</th>
+          <th class="p-3">Age</th>
+          <th class="p-3">Area Of Interest</th>
+          <th class="p-3">Address</th>
+         
+        </tr>
+      </thead>
+       <!-- Show message inside the table if no data -->
+    <tr *ngIf="filteredVolunteers.length === 0">
+      <td colspan="7" class="text-center text-red-600 font-semibold p-4">
+        No volunteers found with the selected filters.
+      </td>
+    </tr>
+      <tbody>
+        <tr *ngFor="let volunteer of filteredVolunteers">
+          <td class="p-3">{{volunteer.fullName}}</td>
+          <td class="p-3">{{volunteer.email}}</td>
+          <td class="p-3">{{volunteer.phoneNumber}}</td>
+          <td class="p-3">{{volunteer.gender}}</td>
+          <td class="p-3">{{volunteer.age}}</td>
+          <td class="p-3">{{volunteer.volunteeringAreasOfInterest}}</td>
+          <td class="p-3">{{volunteer.address}}</td>
+          
+        </tr>
+      </tbody>
+    </table>
+    
+    <ng-template #noVolunteers>
+      <p class="text-center text-red-600 font-semibold mt-4">
+        No volunteers found with the selected filters.
+      </p>
+    </ng-template>
+  </div>
+</div>

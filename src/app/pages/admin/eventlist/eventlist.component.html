@@ -1,0 +1,54 @@
+<div class="bg-gradient-to-r from-greenCustom to-green-500 text-white py-8 text-center">
+  <h1 class="text-3xl font-bold mb-2">Manage Programs</h1>
+  <p class="text-lg opacity-90">Change status to control program visibility</p>
+</div>
+
+<div class="max-w-7xl mx-auto mt-8 px-4">
+  <div class="bg-white rounded-lg shadow p-6">
+    <table class="w-full text-left border-collapse">
+      <thead>
+        <tr class="bg-gray-100 border-b">
+          <th class="py-2 px-4">Title</th>
+          <th class="py-2 px-4">Type</th>
+          <th class="py-2 px-4">Location</th>
+          <th class="py-2 px-4">Start Date</th>
+          <th class="py-2 px-4">End Date</th>
+          <th class="py-2 px-4">Status</th>
+          <th class="py-2 px-4">Actions</th>
+          <th class="py-2 px-4">Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let program of programs" class="border-b hover:bg-gray-50">
+          <td class="py-2 px-4 font-semibold">{{ program.title }}</td>
+          <td class="py-2 px-4">{{ program.type }}</td>
+          <td class="py-2 px-4">{{ program.location }}</td>
+          <td class="py-2 px-4">{{ program.startDate | date }}</td>
+          <td class="py-2 px-4">{{ program.endDate | date }}</td>
+          <td class="py-2 px-4">
+            <span [ngClass]="program.isActive ? 'text-green-600 font-semibold' : 'text-red-600 font-semibold'">
+              {{ program.isActive ? 'Active' : 'Inactive' }}
+            </span>
+          </td>
+          <td class="py-2 px-4">
+            <button 
+              (click)="toggleStatus(program)"
+              class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600"
+            >
+              {{ program.isActive ? 'Deactivate' : 'Activate' }}
+            </button>
+          </td>
+          <td class="py-2 px-4">
+
+            <button
+      (click)="deleteProgram(program.id!)"
+      class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
+    >
+      Delete
+    </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

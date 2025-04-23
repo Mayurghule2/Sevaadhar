@@ -1,0 +1,229 @@
+
+
+
+  
+  <!-- Page Title -->
+  <div class="bg-gradient-to-r from-greenCustom to-green-400 text-white text-center py-10">
+    <h1 class="text-3xl font-bold mb-2">Volunteer Registration</h1>
+    <p class="text-lg">Join our mission to empower communities</p>
+  </div>
+  
+  <!-- Main Content - Volunteer Form -->
+  <div class="container px-4 py-10 flex items-center justify-center bg-gradient-to-r from-greenCustom to-green-400">
+    <div class="bg-white rounded-lg shadow-md p-6 md:p-8">
+      <form [formGroup]="volunteerForm" (ngSubmit)="onSubmit()">
+        <div class="mb-5">
+          <label for="fullName" class="block font-bold mb-2">
+            Full Name <span class="text-red-600">*</span>
+          </label>
+          <input 
+            type="text" 
+            id="fullName" 
+            formControlName="fullName" 
+            class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-600"
+            [ngClass]="{'border-red-500': volunteerForm.get('fullName')?.invalid && volunteerForm.get('fullName')?.touched}"
+          >
+          <div *ngIf="volunteerForm.get('fullName')?.invalid && volunteerForm.get('fullName')?.touched" class="text-red-600 text-sm mt-1">
+            Full name is required
+          </div>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
+          <div>
+            <label for="email" class="block font-bold mb-2">
+              Email <span class="text-red-600">*</span>
+            </label>
+            <input 
+              type="email" 
+              id="email" 
+              formControlName="email" 
+              class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-600"
+              [ngClass]="{'border-red-500': volunteerForm.get('email')?.invalid && volunteerForm.get('email')?.touched}"
+            >
+            <div *ngIf="volunteerForm.get('email')?.invalid && volunteerForm.get('email')?.touched" class="text-red-600 text-sm mt-1">
+              <div *ngIf="volunteerForm.get('email')?.errors?.['required']">Email is required</div>
+              <div *ngIf="volunteerForm.get('email')?.errors?.['email']">Please enter a valid email</div>
+            </div>
+          </div>
+          
+          <div>
+            <label for="phoneNumber" class="block font-bold mb-2">
+              Phone Number <span class="text-red-600">*</span>
+            </label>
+            <input 
+              type="tel" 
+              id="phoneNumber" 
+              formControlName="phoneNumber" 
+              class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-600"
+              [ngClass]="{'border-red-500': volunteerForm.get('phoneNumber')?.invalid && volunteerForm.get('phoneNumber')?.touched}"
+            >
+            <div *ngIf="volunteerForm.get('phoneNumber')?.invalid && volunteerForm.get('phoneNumber')?.touched" class="text-red-600 text-sm mt-1">
+              Phone number is required
+            </div>
+          </div>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
+          <div>
+            <label for="gender" class="block font-bold mb-2">
+              Gender <span class="text-red-600">*</span>
+            </label>
+            <select 
+              id="gender" 
+              formControlName="gender" 
+              class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-600"
+              [ngClass]="{'border-red-500': volunteerForm.get('gender')?.invalid && volunteerForm.get('gender')?.touched}"
+            >
+              <option value="">Select</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Other">Other</option>
+            </select>
+            <div *ngIf="volunteerForm.get('gender')?.invalid && volunteerForm.get('gender')?.touched" class="text-red-600 text-sm mt-1">
+              Gender is required
+            </div>
+          </div>
+          
+          <div>
+            <label for="age" class="block font-bold mb-2">
+              Age <span class="text-red-600">*</span>
+            </label>
+            <input 
+              type="number" 
+              id="age" 
+              formControlName="age" 
+              min="18" 
+              max="100" 
+              class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-600"
+              [ngClass]="{'border-red-500': volunteerForm.get('age')?.invalid && volunteerForm.get('age')?.touched}"
+            >
+            <div *ngIf="volunteerForm.get('age')?.invalid && volunteerForm.get('age')?.touched" class="text-red-600 text-sm mt-1">
+              <div *ngIf="volunteerForm.get('age')?.errors?.['required']">Age is required</div>
+              <div *ngIf="volunteerForm.get('age')?.errors?.['min'] || volunteerForm.get('age')?.errors?.['max']">Age must be between 18 and 100</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="mb-5">
+          <label for="address" class="block font-bold mb-2">
+            Address <span class="text-red-600">*</span>
+          </label>
+          <input 
+            type="text" 
+            id="address" 
+            formControlName="address" 
+            class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-600"
+            [ngClass]="{'border-red-500': volunteerForm.get('address')?.invalid && volunteerForm.get('address')?.touched}"
+          >
+          <div *ngIf="volunteerForm.get('address')?.invalid && volunteerForm.get('address')?.touched" class="text-red-600 text-sm mt-1">
+            Address is required
+          </div>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
+          <div>
+            <label for="preferredVolunteeringDaysTimes" class="block font-bold mb-2">
+              Preferred Volunteering Days/Times <span class="text-red-600">*</span>
+            </label>
+            <select 
+              id="preferredVolunteeringDaysTimes" 
+              formControlName="preferredVolunteeringDaysTimes" 
+              class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-600"
+              [ngClass]="{'border-red-500': volunteerForm.get('preferredVolunteeringDaysTimes')?.invalid && volunteerForm.get('preferredVolunteeringDaysTimes')?.touched}"
+            >
+              <option value="">Select</option>
+              <option value="Weekdays">Weekdays</option>
+              <option value="Weekends">Weekends</option>
+              <option value="Morning">Morning</option>
+              <option value="Evening">Evening</option>
+            </select>
+            <div *ngIf="volunteerForm.get('preferredVolunteeringDaysTimes')?.invalid && volunteerForm.get('preferredVolunteeringDaysTimes')?.touched" class="text-red-600 text-sm mt-1">
+              Preferred volunteering days/times is required
+            </div>
+          </div>
+          
+          <div>
+            <label for="volunteeringAreasOfInterest" class="block font-bold mb-2">
+              Areas of Interest <span class="text-red-600">*</span>
+            </label>
+            <select 
+              id="volunteeringAreasOfInterest" 
+              formControlName="volunteeringAreasOfInterest" 
+              class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-600"
+              [ngClass]="{'border-red-500': volunteerForm.get('volunteeringAreasOfInterest')?.invalid && volunteerForm.get('volunteeringAreasOfInterest')?.touched}"
+            >
+              <option value="">Select</option>
+              <option value="Education">Education</option>
+              <option value="Healthcare">Healthcare</option>
+              <option value="Food_and_Nutrition">Food and Nutrition</option>
+              <option value="Womens_Empowerment">Women's Empowerment</option>
+              <option value="Disaster_Relief">Disaster Relief</option>
+              <option value="Community_Development">Community Development</option>
+              <option value="Support_for_Differently_Abled">Support for Differently-Abled</option>
+            </select>
+            <div *ngIf="volunteerForm.get('volunteeringAreasOfInterest')?.invalid && volunteerForm.get('volunteeringAreasOfInterest')?.touched" class="text-red-600 text-sm mt-1">
+              Areas of interest is required
+            </div>
+          </div>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
+          <div>
+            <label for="adharCard" class="block font-bold mb-2">
+              Aadhar Card Number <span class="text-red-600">*</span>
+            </label>
+            <input 
+              type="text" 
+              id="adharCard" 
+              formControlName="adharCard" 
+              class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-600"
+              [ngClass]="{'border-red-500': volunteerForm.get('adharCard')?.invalid && volunteerForm.get('adharCard')?.touched}"
+            >
+            <div *ngIf="volunteerForm.get('adharCard')?.invalid && volunteerForm.get('adharCard')?.touched" class="text-red-600 text-sm mt-1">
+              Aadhar card number is required
+            </div>
+          </div>
+          
+          <!-- <div>
+            <label for="panCard" class="block font-bold mb-2">
+              PAN Card Number <span class="text-red-600">*</span>
+            </label>
+            <input 
+              type="text" 
+              id="panCard" 
+              formControlName="panCard" 
+              class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-600"
+              [ngClass]="{'border-red-500': volunteerForm.get('panCard')?.invalid && volunteerForm.get('panCard')?.touched}"
+            >
+            <div *ngIf="volunteerForm.get('panCard')?.invalid && volunteerForm.get('panCard')?.touched" class="text-red-600 text-sm mt-1">
+              PAN card number is required
+            </div>
+          </div> -->
+        </div>
+        
+        <div class="mb-5">
+          <label for="qualifications" class="block font-bold mb-2">
+            Qualifications <span class="text-red-600">*</span>
+          </label>
+          <input 
+            type="text" 
+            id="qualifications" 
+            formControlName="qualifications" 
+            class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-600"
+            [ngClass]="{'border-red-500': volunteerForm.get('qualifications')?.invalid && volunteerForm.get('qualifications')?.touched}"
+          >
+          <div *ngIf="volunteerForm.get('qualifications')?.invalid && volunteerForm.get('qualifications')?.touched" class="text-red-600 text-sm mt-1">
+            Qualifications are required
+          </div>
+        </div>
+        
+        <button 
+          type="submit" 
+          class="w-full bg-green-700 text-white py-3 rounded font-bold hover:bg-green-800 transition duration-300"
+        >
+          Submit Application
+        </button>
+      </form>
+    </div>
+  </div>
+  

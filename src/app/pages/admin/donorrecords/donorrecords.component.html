@@ -1,0 +1,68 @@
+<div class="bg-gradient-to-r from-greenCustom to-green-500 text-white py-6 text-center">
+  <h1 class="text-3xl font-bold mb-5">Your Donor Records</h1>
+  <p class="text-1xl opacity-90 pb-[20px]">Tracking every contribution that drives change.</p>
+</div>
+
+<div class="max-w-7xl mx-auto mt-8 px-4">
+  <div class="bg-white rounded-lg shadow p-6">
+    <!-- Filter & Export Buttons -->
+    <div class="flex flex-wrap justify-between items-center gap-4 mb-4">
+      <div class="flex flex-wrap gap-2 items-center">
+        <!-- Purpose Filter -->
+        <select [(ngModel)]="selectedPurpose" class="px-3 py-2 border rounded" (change)="onPurposeChange()">
+          <option value="">All Purposes</option>
+          <option *ngFor="let purpose of purposes" [value]="purpose">{{ purpose }}</option>
+        </select>
+
+        <!-- Amount Filter -->
+        <select [(ngModel)]="selectedAmount" class="px-3 py-2 border rounded" (change)="applyFilter()">
+          <option value="">Amount</option>
+          <option value="1">≤ ₹1000</option>
+          <option value="2">₹1000 - ₹5000</option>
+          <option value="3">₹5000 - ₹20000</option>
+          <option value="4">≥ ₹20000</option>
+        </select>
+
+        <!-- Filter Buttons -->
+        <button (click)="resetFilter()" class="bg-red-500 text-white px-4 py-2 rounded">Reset</button>
+      </div>
+
+      <!-- Excel Export -->
+      <button (click)="exportToExcel()" class="bg-green-700 text-white px-4 py-2 rounded">Download Report</button>
+    </div>
+
+    <!-- Donor Table -->
+    <div *ngIf="filteredDonors.length > 0; else noRecords">
+      <table class="w-full text-left border-collapse">
+        <thead>
+          <tr class="bg-gray-100 border-b">
+            <th class="py-2 px-4">Full Name</th>
+            <th class="py-2 px-4">Email</th>
+            <th class="py-2 px-4">Mobile Number</th>
+            <th class="py-2 px-4">Pincode</th>
+            <th class="py-2 px-4">Purpose</th>
+            <th class="py-2 px-4">Amount (₹)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let donor of filteredDonors" class="border-b">
+            
+            <td class="py-2 px-4">{{ donor.fullName }}</td>
+            <td class="py-2 px-4">{{ donor.email }}</td>
+            <td class="py-2 px-4">{{ donor.mobileNumber }}</td>
+            <td class="py-2 px-4">{{ donor.pincode }}</td>
+            <td class="py-2 px-4">
+              <span class="inline-block bg-green-100 text-green-600 px-2 py-1 rounded-full text-xs">{{ donor.purpose }}</span>
+            </td>
+            <td class="py-2 px-4 font-semibold">₹{{ donor.amount }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- No Records Template -->
+    <ng-template #noRecords>
+      <p class="text-center text-gray-500 py-4">No donor records found for the selected filters.</p>
+    </ng-template>
+  </div>
+</div>

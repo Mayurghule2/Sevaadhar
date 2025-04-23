@@ -1,0 +1,101 @@
+<!-- src/app/donation-history/donation-history.component.html -->
+
+<!-- Header -->
+
+
+<!-- Title -->
+<section class="bg-green-800 text-white text-center py-12 mb-8">
+  <h1 class="text-4xl font-semibold">Your Donation History</h1>
+  <p class="mt-2">Thank you for your continued support in building better lives together</p>
+</section>
+
+<!-- Main -->
+<main class="container mx-auto px-4 space-y-12">
+
+  <!-- Donation Records -->
+  <section class="bg-white rounded-lg shadow p-6">
+    <div class="flex justify-between items-center mb-6">
+      <h2 class="text-2xl font-semibold">Donation Records</h2>
+      <button (click)="downloadReport()" class="bg-green-800 text-white px-4 py-2 rounded">Download Report</button>
+    </div>
+
+    <!-- Filters -->
+    <div class="flex flex-wrap gap-4 mb-6">
+      <select [(ngModel)]="filterProg" class="border rounded px-3 py-2">
+        <option *ngFor="let p of programs">{{p}}</option>
+      </select>
+      <input type="date" [(ngModel)]="fromDate" class="border rounded px-3 py-2" />
+      <input type="date" [(ngModel)]="toDate"   class="border rounded px-3 py-2" />
+      <select [(ngModel)]="filterStatus" class="border rounded px-3 py-2">
+        <option *ngFor="let s of statuses">{{s}}</option>
+      </select>
+      <button (click)="applyFilters()" class="bg-green-800 text-white px-4 py-2 rounded">Apply Filters</button>
+    </div>
+
+    <!-- Table -->
+    <div class="overflow-auto">
+      <table class="min-w-full border-collapse">
+        <thead>
+          <tr class="bg-gray-100">
+            <th class="p-3 text-left">Date</th>
+            <th class="p-3 text-left">Receipt No.</th>
+            <th class="p-3 text-left">Program</th>
+            <th class="p-3 text-left">Amount</th>
+            <th class="p-3 text-left">Payment Method</th>
+            <th class="p-3 text-left">Status</th>
+            <th class="p-3 text-left">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let r of filtered" class="border-b">
+            <td class="p-3">{{ r.date }}</td>
+            <td class="p-3">{{ r.receiptNo }}</td>
+            <td class="p-3">{{ r.program }}</td>
+            <td class="p-3">₹{{ r.amount | number }}</td>
+            <td class="p-3">{{ r.paymentMethod }}</td>
+            <td class="p-3">
+              <span
+                [ngClass]="{
+                  'text-green-600 font-bold': r.status==='Successful',
+                  'text-yellow-500 font-bold': r.status==='Pending'
+                }"
+              >
+                {{ r.status }}
+              </span>
+            </td>
+            <td class="p-3"><a class="text-blue-600 hover:underline" href="#">View Receipt</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Total -->
+    <div class="bg-gray-50 p-4 rounded text-right mt-4">
+      <h3 class="text-xl font-semibold">Total Contribution: ₹{{ totalAmount | number }}</h3>
+      <p>Thank you for your generosity and continued support!</p>
+    </div>
+
+    <!-- (Optional) simple pagination -->
+    <div class="flex justify-center mt-6 space-x-2">
+      <button class="border px-3 py-1 rounded">«</button>
+      <button class="bg-green-800 text-white px-3 py-1 rounded">1</button>
+      <button class="border px-3 py-1 rounded">2</button>
+      <button class="border px-3 py-1 rounded">3</button>
+      <button class="border px-3 py-1 rounded">»</button>
+    </div>
+  </section>
+
+  <!-- Tax Benefits -->
+  <section class="bg-white rounded-lg shadow p-6">
+    <h2 class="text-2xl font-semibold mb-4">Tax Benefits Information</h2>
+    <p>All donations to Seva Adhaar are eligible for tax benefits under Section 80G of the Income Tax Act.</p>
+    <p>You can download your consolidated donation certificate for the financial year for tax filing purposes.</p>
+    <button (click)="downloadTaxCertificate()"
+            class="mt-4 bg-green-800 text-white px-4 py-2 rounded">
+      Download Tax Certificate
+    </button>
+  </section>
+
+</main>
+
+

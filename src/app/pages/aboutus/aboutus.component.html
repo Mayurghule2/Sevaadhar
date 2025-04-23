@@ -1,0 +1,139 @@
+<!-- about-us.component.html -->
+<header class="bg-gradient-to-r from-greenCustom to-green-400 text-white py-5 text-center font-segoe ">
+  <div class="container mx-auto px-5 p-20">
+
+    <p class="text-4xl font-bold shadow-sm">Building a Better Future through Compassion and Action</p>
+  </div>
+</header>
+
+
+
+<main>
+  <!-- Our Story Section -->
+  <section id="our-story" class="py-16">
+    <div class="container mx-auto px-5">
+      <h2
+        class="text-4xl mb-8 text-green-700 text-center relative after:content-[''] after:block after:w-20 after:h-1 after:bg-yellow-400 after:mx-auto after:mt-2 font-bold">
+        Our Story</h2>
+      <div class="flex gap-10">
+        <img
+          src="https://www.shutterstock.com/image-photo/teamwork-partnership-concept-hands-raised-600nw-2465435951.jpg"
+          alt="Charity volunteers working together" class="w-full h-96 object-cover rounded-lg mb-8 shadow-xl">
+        <div class="mr-5 text-gray-700">
+          <p class="text-lg mb-5 ">Hope Horizon Charity was founded in 2010 by a group of passionate individuals who
+            witnessed firsthand the struggles faced by underprivileged communities. What began as a small local
+            initiative has grown into a nationwide organization dedicated to creating sustainable change.</p>
+          <p class="text-lg mb-5">Our journey started when our founder, Sarah Mitchell, volunteered at a local shelter
+            and recognized the need for more comprehensive support systems. She gathered friends and colleagues who
+            shared her vision, and together they created Hope Horizon with a simple mission: to provide hope and
+            practical assistance to those who need it most.</p>
+          <p class="text-lg mb-5">Over the past decade, we've helped thousands of individuals access education,
+            healthcare, and essential resources. We've built schools in rural areas, established medical camps in
+            underserved communities, and created vocational training programs to empower people with the skills they
+            need to build better futures.</p>
+          <p class="text-lg mb-5">Today, Hope Horizon continues to expand its reach and impact, guided by the same core
+            values that inspired its creation: compassion, integrity, and a belief in the inherent dignity of every
+            human being.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Vision & Mission Section -->
+  <section id="vision" class="py-16 bg-white">
+    <div class="container mx-auto px-5">
+      <div class="flex flex-col md:flex-row justify-between gap-8 mt-8">
+        <div class="flex bg-gray-100 p-8 rounded-lg shadow gap-10">
+          <div>
+            <h3
+              class="text-3xl mb-8 text-green-700 text-center relative after:content-[''] after:block after:w-20 after:h-1 after:bg-yellow-400 after:mx-auto after:mt-2 font-bold">
+              Our Vision</h3>
+            <p class="text-lg mb-5 text-gray-700">We envision a world where every individual has equal access to opportunities,
+              resources, and support systems needed to thrive and reach their full potential.</p>
+            <p class="text-lg mb-5 text-gray-700">We believe in a future where communities are empowered to create sustainable
+              solutions
+              to their challenges, where poverty and inequality are eliminated, and where compassion guides our
+              collective
+              actions.</p>
+          </div>
+          <div class=" w-full">
+            <img
+              src="https://media.istockphoto.com/id/1223036866/photo/monks-of-ramakrishna-mission-donating-foods-during-lockdown-period.jpg?s=612x612&w=0&k=20&c=BYMOdUqSaeVoO5vQrjj5cu_d6dplk8rlaiA-RPIMcjk="
+              alt="Vision image" class="w-full h-72 object-cover rounded-lg shadow-lg">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="mission" class="py-16 bg-white">
+    <div class="container mx-auto px-5">
+
+      <div class="flex flex-col md:flex-row justify-between gap-8 mt-8">
+        <div class="flex bg-gray-100 p-8 rounded-lg shadow gap-10">
+          <div class="w-1/2">
+            <img src="https://www.sightsavers.org/wp-content/uploads/2023/12/Sightsavers-India-eye-centre-Chennai-580x326.jpg" alt="" class="w-full h-full object-cover rounded-lg shadow-lg">
+          </div>
+          <div>
+          <h3
+            class="text-3xl mb-8 text-green-700 text-center relative after:content-[''] after:block after:w-20 after:h-1 after:bg-yellow-400 after:mx-auto after:mt-2 font-bold">
+            Our Mission</h3>
+          <p class="text-lg mb-5 text-gray-700">Hope Horizon exists to transform lives through targeted programs that address
+            fundamental
+            human needs while building pathways to self-sufficiency.</p>
+          <p class="text-lg mb-2 text-gray-700">We commit to:</p>
+          <ul class="list-disc ml-5 text-lg text-gray-700">
+            <li class="mb-2">Providing immediate relief to communities in crisis</li>
+            <li class="mb-2">Creating educational opportunities for underserved populations</li>
+            <li class="mb-2">Developing healthcare initiatives that reach the most vulnerable</li>
+            <li class="mb-2">Building economic empowerment programs that foster independence</li>
+            <li>Advocating for systemic changes that promote equality and justice</li>
+          </ul>
+        </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Our Team Section -->
+  <section id="our-team" class="py-16">
+    <div class="container mx-auto px-5">
+      <h2
+      class="text-3xl mb-8 text-green-700 text-center relative after:content-[''] after:block after:w-20 after:h-1 after:bg-yellow-400 after:mx-auto after:mt-2 font-bold">
+        Our Team</h2>
+      <p class="text-lg text-center mb-10 text-gray-700">The dedicated professionals at Hope Horizon bring diverse expertise and a
+        shared commitment to our mission. Together, we work tirelessly to create positive change and build a more
+        equitable world.</p>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mt-10">
+        <div *ngFor="let member of teamMembers"
+          class="bg-white rounded-lg overflow-hidden shadow-lg transition-transform hover:-translate-y-1">
+          <img [src]="member.imageUrl" [alt]="member.name" class="w-full h-72 object-cover">
+          <h3 class="text-xl text-green-700 mt-4 mb-1 px-4">{{member.name}}</h3>
+          <p class="text-gray-600 mb-4 px-4">{{member.position}}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Board of Trustees Section -->
+  <section id="board" class="py-16 bg-white">
+    <div class="container mx-auto px-5">
+      <h2
+      class="text-3xl mb-8 text-green-700 text-center relative after:content-[''] after:block after:w-20 after:h-1 after:bg-yellow-400 after:mx-auto after:mt-2 font-bold">
+        Board of Trustees</h2>
+      <p class="text-lg text-center mb-10 text-gray-700">Our Board of Trustees provides strategic guidance and oversight to ensure
+        that Hope Horizon fulfills its mission with integrity and impact. These dedicated individuals contribute their
+        time, expertise, and passion to advance our work.</p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-10">
+        <div *ngFor="let member of boardMembers" class="flex items-center bg-white p-5 rounded-lg shadow hover:scale-105 transition-transform duration-300 ease-in-out hover:shadow-xl">
+          <img [src]="member.imageUrl" [alt]="member.name" class="w-20 h-20 rounded-full object-cover mr-5">
+          <div>
+            <h3 class="text-lg text-green-700 mb-1">{{member.name}}</h3>
+            <p class="text-gray-600 text-sm mb-1">{{member.position}}</p>
+            <p class="text-gray-600 text-sm">{{member.organization}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>

@@ -1,0 +1,117 @@
+<div class="container">
+  <div class="send-message">
+    <h3>🌱 New Program Registration</h3>
+
+    <form [formGroup]="programForm" (ngSubmit)="onSubmit() " enctype="multipart/form-data">
+      
+      <!-- Program Title -->
+      <div class="form-div">
+        <label for="title">Program Title:</label>
+        <input formControlName="title" type="text" placeholder="Program Title" />
+        <div *ngIf="programForm.get('title')?.invalid && programForm.get('title')?.touched" class="text-red-500">
+          Program title is required.
+        </div>
+      </div>
+
+      <!-- Program Type -->
+      <div class="form-div">
+        <label for="programtype">Program Type:</label>
+        <select formControlName="type">
+          <option *ngFor="let type of programTypes" [value]="type">{{ type }}</option>
+        </select>
+        <div *ngIf="programForm.get('type')?.invalid && programForm.get('type')?.touched" class="text-red-500">
+          Program type is required.
+        </div>
+      </div>
+
+      <!-- Description -->
+      <div class="form-div">
+        <label for="description">Description:</label>
+        <textarea formControlName="description" rows="5" placeholder="Program Description"></textarea>
+        <div *ngIf="programForm.get('description')?.invalid && programForm.get('description')?.touched" class="text-red-500">
+          Description is required.
+        </div>
+      </div>
+
+      <!-- Location -->
+      <div class="form-div">
+        <label for="location">Location:</label>
+        <input formControlName="location" type="text" placeholder="Location" />
+      </div>
+
+      <!-- Capacity -->
+      <div class="form-div">
+        <label for="capacity">Capacity:</label>
+        <input formControlName="capacity" type="number" placeholder="Capacity" />
+      </div>
+
+      <!-- Start Date -->
+      <div class="form-div">
+        <label for="startDate">Start Date:</label>
+        <input type="date" formControlName="startDate" />
+        <div *ngIf="programForm.get('startDate')?.invalid && programForm.get('startDate')?.touched" class="text-red-500">
+          Start date is required.
+        </div>
+      </div>
+
+      <!-- End Date -->
+      <div class="form-div">
+        <label for="endDate">End Date:</label>
+        <input type="date" formControlName="endDate" />
+        <div *ngIf="programForm.get('endDate')?.invalid && programForm.get('endDate')?.touched" class="text-red-500">
+          End date is required.
+        </div>
+      </div>
+
+      <!-- Upload Image -->
+      <div class="form-div">
+        <label for="uploadimage">Upload Image:</label>
+        <input type="file" (change)="onImageSelected($event)" formControlName="image" />
+        <div *ngIf="programForm.get('uploadimage')?.invalid && programForm.get('uploadimage')?.touched" class="text-red-500">
+          Image file is required.
+        </div>
+      </div>
+
+      <!-- Upload Brochure -->
+      <div class="form-div">
+        <label for="uploadbrochure">Upload Brochure:</label>
+        <input type="file" accept=".pdf,.jpg,.png,.jpeg" (change)="onBrochureSelected($event)" formControlName="brochure"/>
+      </div>
+
+      <!-- Email -->
+      <div class="form-div">
+        <label for="email">Contact Email:</label>
+        <input formControlName="contactEmail" type="email" placeholder="Your Email" />
+        <div *ngIf="programForm.get('email')?.invalid && programForm.get('email')?.touched" class="text-red-500">
+          Enter a valid email.
+        </div>
+      </div>
+
+      <!-- Mobile -->
+      <div class="form-div">
+        <label for="contactPhone">Contact Number:</label>
+        <input formControlName="contactPhone" type="tel" placeholder="Mobile Number" />
+        <div *ngIf="programForm.get('contactPhone')?.invalid && programForm.get('contactPhone')?.touched" class="text-red-500">
+          Enter a valid 10-digit mobile number.
+        </div>
+      </div>
+
+      <!-- Is Active -->
+      <div class="form-div">
+        <label for="isActive">Is Active:</label>
+        <select formControlName="isActive">
+          <option value="">-- Select Yes/No --</option>
+          <option [value]="true">Yes</option>
+          <option [value]="false">No</option>
+        </select>
+        <div *ngIf="programForm.get('isactive')?.invalid && programForm.get('isActive')?.touched" class="text-red-500">
+          Please select active status.
+        </div>
+      </div>
+
+      <div class="form-div flex justify-center">
+        <button type="submit">Register</button>
+      </div>
+    </form>
+  </div>
+</div>

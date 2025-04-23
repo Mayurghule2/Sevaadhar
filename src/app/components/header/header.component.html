@@ -1,0 +1,98 @@
+<header id="header" [ngClass]="{'bg-green-700 py-3': isScrolled, 'bg-green-800 py-4': !isScrolled}" class="text-white fixed w-full top-0 z-50 shadow-md transition-all duration-300 font-sans mb-8">
+  <div class="container mx-auto px-4">
+    <div class="flex justify-between items-center">
+      <a routerLink="/" routerLinkActive="active">
+        <div class="ml-2 text-gray-100 text-2xl font-bold tracking-wide flex items-center">
+          Seva <span class="text-yellow-500 ml-1">Adhaar</span>
+        </div>
+      </a>
+      
+      <nav class="flex justify-center items-center">
+        <ul class="flex list-none p-0 m-0 items-center justify-center pr-3">
+          <!-- About Menu -->
+          <li class="relative ml-7 group" (mouseenter)="toggleDropdown(true)"
+          (mouseleave)="toggleDropdown(false)">
+            <a routerLink="/about" routerLinkActive="active" 
+               class="flex items-center text-white no-underline transition-all duration-300 font-medium relative pb-1 hover:text-yellow-400">
+              <i class="fas fa-users mr-1"></i> Who we are? 
+              <i class="fas fa-chevron-down text-xs ml-1"></i>
+              <span class="absolute w-0 h-0.5 bg-yellow-400 bottom-0 left-0 transition-all duration-300 group-hover:w-full"></span>
+            </a>
+            <div class="invisible group-hover:visible absolute bg-white min-w-[220px] shadow-lg z-50 opacity-0 group-hover:opacity-100 transition-all duration-300" *ngIf="isDropdownOpen">
+              <a routerLink="/about" fragment="about-us" class="text-gray-800 py-3 px-4 block hover:bg-gray-200"  (click)="closeDropdown()">About us</a>
+              <a routerLink="/our-impact" fragment="our-impact" class="text-gray-800 py-3 px-4 block hover:bg-gray-200"  (click)="closeDropdown()">Our Impact</a>
+            </div>
+          </li>
+          
+          <!-- Services Menu -->
+          <li class="relative ml-7 group" (mouseenter)="toggleDropdown(true)"
+          (mouseleave)="toggleDropdown(false)">
+            <a routerLink="/services" routerLinkActive="active" 
+               class="flex items-center text-white no-underline transition-all duration-300 font-medium relative pb-1 hover:text-yellow-400">
+              <i class="fas fa-hands-helping mr-1"></i> What we do? 
+              <i class="fas fa-chevron-down text-xs ml-1"></i>
+              <span class="absolute w-0 h-0.5 bg-yellow-400 bottom-0 left-0 transition-all duration-300 group-hover:w-full"></span>
+            </a>
+            <div class="invisible group-hover:visible absolute bg-white min-w-[220px] shadow-lg z-50 opacity-0 group-hover:opacity-100 transition-all duration-300" *ngIf="isDropdownOpen">
+              <a routerLink="/education" fragment="education" class="text-gray-800 py-3 px-4 block hover:bg-gray-200" (click)="closeDropdown()">Education</a>
+              <a routerLink="/healthcare" fragment="healthcare" class="text-gray-800 py-3 px-4 block hover:bg-gray-200" (click)="closeDropdown()">Healthcare</a>
+              <a routerLink="/food-nutrition" fragment="food-nutrition" class="text-gray-800 py-3 px-4 block hover:bg-gray-200" (click)="closeDropdown()">Food and Nutrition</a>
+              <a routerLink="/women-empowerment" fragment="womens-empowerment" class="text-gray-800 py-3 px-4 block hover:bg-gray-200" (click)="closeDropdown()">Women's Empowerment</a>
+              <a routerLink="/disaster-relief" fragment="disaster-relief" class="text-gray-800 py-3 px-4 block hover:bg-gray-200" (click)="closeDropdown()">Disaster Relief</a>
+              <a routerLink="/community-development" fragment="community-development" class="text-gray-800 py-3 px-4 block hover:bg-gray-200" (click)="closeDropdown()">Community Development</a>
+              <a routerLink="/differently-abled" fragment="differently-abled" class="text-gray-800 py-3 px-4 block hover:bg-gray-200" (click)="closeDropdown()">Support for Differently-Abled</a>
+            </div>
+          </li>
+          
+          <!-- Resources Menu -->
+          <li class="relative ml-7 group" (mouseenter)="toggleDropdown(true)"
+          (mouseleave)="toggleDropdown(false)">
+            <a routerLink="/resources" routerLinkActive="active" 
+               class="flex items-center text-white no-underline transition-all duration-300 font-medium relative pb-1 hover:text-yellow-400">
+              <i class="fas fa-book-open mr-1"></i> Resources 
+              <i class="fas fa-chevron-down text-xs ml-1"></i>
+              <span class="absolute w-0 h-0.5 bg-yellow-400 bottom-0 left-0 transition-all duration-300 group-hover:w-full"></span>
+            </a>
+            <div class="invisible group-hover:visible absolute bg-white min-w-[220px] shadow-lg z-50 opacity-0 group-hover:opacity-100 transition-all duration-300" *ngIf="isDropdownOpen">
+              <a routerLink="/blog" fragment="blogs" class="text-gray-800 py-3 px-4 block hover:bg-gray-200" (click)="closeDropdown()">Blogs</a>
+              <a routerLink="/research" fragment="research" class="text-gray-800 py-3 px-4 block hover:bg-gray-200" (click)="closeDropdown()">Research</a>
+              <a (click)="downloadPDF()" fragment="financials-resources" class="text-gray-800 py-3 px-4 block hover:bg-gray-200" (click)="closeDropdown()">Financials</a>
+            </div>
+          </li>
+          
+          <!-- Volunteer Menu -->
+          <li class="relative ml-7">
+            <a routerLink="/volunteer" routerLinkActive="active" 
+               class="flex items-center text-white no-underline transition-all duration-300 font-medium relative pb-1 hover:text-yellow-400 group">
+              <i class="fas fa-hand-paper mr-1"></i> Volunteer
+              <span class="absolute w-0 h-0.5 bg-yellow-400 bottom-0 left-0 transition-all duration-300 group-hover:w-full"></span>
+            </a>
+          </li>
+          
+          <!-- Contact Menu -->
+          <li class="relative ml-7 group" (mouseenter)="toggleDropdown(true)"
+          (mouseleave)="toggleDropdown(false)">
+            <a routerLink="/contact" routerLinkActive="active" 
+               class="flex items-center text-white no-underline transition-all duration-300 font-medium relative pb-1 hover:text-yellow-400">
+              <i class="fas fa-envelope mr-1" ></i> Contact 
+              <i class="fas fa-chevron-down text-xs ml-1"></i>
+              <span class="absolute w-0 h-0.5 bg-yellow-400 bottom-0 left-0 transition-all duration-300 group-hover:w-full"></span>
+            </a>
+            <div class="invisible group-hover:visible absolute bg-white min-w-[220px] shadow-lg z-50 opacity-0 group-hover:opacity-100 transition-all duration-300" *ngIf="isDropdownOpen">
+              <a routerLink="/contact-us" fragment="contact-form" class="text-gray-800 py-3 px-4 block hover:bg-gray-200" (click)="closeDropdown()">Contact Form</a>
+              <a routerLink="/contact" fragment="locations" class="text-gray-800 py-3 px-4 block hover:bg-gray-200" (click)="closeDropdown()">Our Locations</a>
+              
+            </div>
+          </li>
+          
+          <!-- Donate Button -->
+          <li class="relative ml-7">
+            <a href="/donate-form" class="bg-yellow-500 text-gray-900 py-2 px-4 rounded flex items-center hover:bg-yellow-400 transition-colors duration-300">
+              <i class="fas fa-hand-holding-heart mr-1"></i> Donate
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>

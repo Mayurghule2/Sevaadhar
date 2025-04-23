@@ -1,0 +1,144 @@
+<!-- src/app/components/admin-sidebar/admin-sidebar.component.html -->
+
+<div class="flex h-screen">
+  <!-- Desktop Sidebar -->
+  <div class="hidden md:flex flex-col h-full mr-0" 
+       [ngClass]="isExpanded ? 'w-72' : 'w-24'" 
+       style="transition: width 0.7s ease;">
+    <!-- Logo and Toggle -->
+    <div class="flex items-center justify-between h-16 px-4 bg-gradient-to-r from-greenCustom via-green-600 to-green-500  text-white">
+      <div class="flex items-center">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
+        </svg>
+        <span class="ml-2 font-bold text-xl" *ngIf="isExpanded">SevaAdhar Admin</span>
+      </div>
+      <button (click)="toggleSidebar()" class="p-1 rounded-full hover:bg-green-800">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path *ngIf="isExpanded" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 19l-7-7 7-7m8 14l-7-7 7-7" />
+          <path *ngIf="!isExpanded" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5l7 7-7 7M5 5l7 7-7 7" />
+        </svg>
+      </button>
+    </div>
+    
+    <!-- Nav Items -->
+    <div class="flex-1 overflow-y-auto bg-gradient-to-r from-greenCustom to-green-500  text-white">
+      <nav class="mt-5 px-2">
+        <ng-container *ngFor="let item of navigationItems">
+          <a [routerLink]="item.route" 
+             routerLinkActive="bg-emerald-600" 
+             class="group flex items-center px-2 py-3 mb-1 rounded-md hover:bg-emerald-700 transition-colors duration-200">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" [attr.d]="item.icon" />
+              <path  stroke-linecap="round" stroke-linejoin="round" stroke-width="2"  />
+            </svg>
+            <span class="ml-3 text-xl font-medium" *ngIf="isExpanded">{{ item.title }}</span>
+          </a>
+        </ng-container>
+      </nav>
+    </div>
+    
+    <!-- User Profile -->
+    <div class="p-4 bg-emerald-900 text-white flex items-center" [ngClass]="isExpanded ? 'justify-between' : 'justify-center'">
+      <div class="flex items-center" *ngIf="isExpanded">
+        <div class="w-10 h-10 rounded-full bg-green-500 flex items-center justify-center">
+          <span class="font-bold text-lg">A</span>
+        </div>
+        <div class="ml-3">
+          <p class="text-xl font-medium">Admin User</p>
+          <p class="text-sm text-green-300">admin@charity.org</p>
+        </div>
+      </div>
+      <button *ngIf="!isExpanded" class="w-10 h-10 rounded-full bg-green-500 flex items-center justify-center">
+        <span class="font-bold text-lg">A</span>
+      </button>
+      <button *ngIf="isExpanded" class="p-1 rounded-full hover:bg-green-800">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" (click)="logout()">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+        </svg>
+      </button>
+    </div>
+  </div>
+  
+  <!-- Mobile Menu Toggle Button -->
+  <div class="md:hidden fixed top-0 left-0 z-20 m-4">
+    <button 
+      (click)="toggleMobileMenu()" 
+      class="bg-green-700 text-white p-2 rounded-md hover:bg-green-600 focus:outline-none"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+    </button>
+  </div>
+  
+  <!-- Mobile Sidebar Overlay -->
+  <div 
+    *ngIf="isMobileMenuOpen" 
+    class="md:hidden fixed inset-0 bg-black bg-opacity-50 z-30"
+    (click)="closeMobileMenu()"
+  ></div>
+  
+  <!-- Mobile Sidebar -->
+  <div 
+    *ngIf="isMobileMenuOpen" 
+    class="md:hidden fixed left-0 top-0 w-64 h-full bg-green-800 text-white z-40 transition-all duration-300"
+  >
+    <!-- Header -->
+    <div class="flex items-center justify-between h-16 px-4 bg-green-700">
+      <div class="flex items-center">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
+        </svg>
+        <span class="ml-2 font-bold text-lg">Charity Admin</span>
+      </div>
+      <button (click)="closeMobileMenu()" class="p-1 rounded-full hover:bg-green-600">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+    
+    <!-- Nav Items -->
+    <div class="overflow-y-auto h-full pb-20">
+      <nav class="mt-5 px-2">
+        <ng-container *ngFor="let item of navigationItems">
+          <a [routerLink]="item.route" 
+             routerLinkActive="bg-emerald-600" 
+             class="flex items-center px-2 py-3 mb-1 rounded-md hover:bg-green-700 transition-colors duration-200"
+             (click)="closeMobileMenu()">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" [attr.d]="item.icon" />
+              <path  stroke-linecap="round" stroke-linejoin="round" stroke-width="2"  />
+            </svg>
+            <span class="ml-3 text-sm font-medium">{{ item.title }}</span>
+          </a>
+        </ng-container>
+      </nav>
+    </div>
+    
+    <!-- User Profile -->
+    <div class="absolute bottom-0 left-0 right-0 p-4 bg-green-900 text-white flex items-center justify-between">
+      <div class="flex items-center">
+        <div class="w-10 h-10 rounded-full bg-green-500 flex items-center justify-center">
+          <span class="font-bold text-lg">A</span>
+        </div>
+        <div class="ml-3">
+          <p class="text-sm font-medium">Admin User</p>
+          <p class="text-xs text-green-300">admin@charity.org</p>
+        </div>
+      </div>
+      <button class="p-1 rounded-full hover:bg-green-800">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+        </svg>
+      </button>
+    </div>
+  </div>
+  
+  <!-- Main Content Area -->
+  <div class="flex-1 bg-gray-100 md:ml-0" [ngClass]="isExpanded ? 'md:ml-20' : 'md:ml-16'">
+    <!-- Content goes here -->
+    <ng-content></ng-content>
+  </div>
+</div>

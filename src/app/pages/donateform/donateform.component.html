@@ -1,0 +1,171 @@
+<div class="bg-gradient-to-r from-greenCustom via-green-600 to-green-500 flex items-center justify-center">
+<div class="container">
+  <div class="send-message">
+    <h3>Donate Us</h3>
+    <form [formGroup]="donateform" (ngSubmit)="onSubmit()">
+      <div class="form-div">
+        <label for="fullname">Enter FullName :</label>
+        <input formControlName="fullname" type="text" name="fullname" placeholder="Your Name" />
+       <div *ngIf="donateform.get('fullname')?.invalid && donateform.get('fullname')?.touched">Not a valid Name, must contain only letters</div>
+      </div>
+      <div class="form-div" >
+        <label for="dob">Date of Birth :</label>
+        <input formControlName="dob" type="date" name="dob" />
+        <div *ngIf="donateform.get('dob')?.hasError('underage') && donateform.get('dob')?.touched">
+          You must be at least 18 years old.
+        </div>
+      </div>
+      <div class="form-div">
+        <label for="email">Email:</label>
+         <input formControlName="email" type="email" name="email" placeholder="Your Email" />
+         <div *ngIf="donateform.get('email')?.invalid && donateform.get('email')?.touched">Enter valid email</div>
+      </div>
+      <div class="form-div">
+        <label for="mobile">Mobile Number :</label>
+        <input formControlName="mobile" type="number" name="mobile" id="mobile" placeholder="Enter Mobile Number">
+        <p *ngIf="donateform.get('mobile')?.invalid && donateform.get('mobile')?.touched">Enter a valid Mobile Number</p>
+      </div>
+      <div class="form-div">
+        <label for="aadhar">AadharCard Number :</label>
+        <input formControlName="aadhar" type="text" name="aadhar" id="aadhar" placeholder="Enter Your AadharCard Number">
+        <div *ngIf="donateform.get('aadhar')?.invalid && donateform.get('aadhar')?.touched">Invalid Aadhar(format:1234 4321 1234 4321)</div>
+      </div>
+      <div class="form-div">
+        <label for="adress">Address :</label>
+        <input formControlName="adress" type="text" name="adress" placeholder="Your Address" />
+      </div>
+      <div class="form-div">
+        <label for="pincode">Pincode :</label>
+        <input formControlName="pincode" type="number" name="pincode" id="pincode" placeholder="Enter Area Pincode">
+      </div>
+      <div class="form-div">
+        <label for="purpose">Purpose :</label>
+        <select formControlName="purpose" name="purpose" id="purpose">
+          <option value="">-- Select a Purpose of Donation --</option>
+          <option value="EDUCATION">Education</option>
+          <option value="HEALTHCARE">Healthcare</option>
+          <option value="FOOD_AND_NUTRITION">Food and Nutrition</option>
+          <option value="WOMENS_EMPOWERMENT">Women's Empowerment</option>
+          <option value="DISASTER_RELIEF">Disater Relief</option>
+          <option value="COMMUNITY_DEVELOPMENT">Community Development </option>
+          <option value="SUPPORT_FOR_DIFFERENTLY_ABLED">Support for Differently-Abled </option>
+        </select>
+        <p *ngIf="donateform.get('purpose')?.invalid">Please select purpose of donation</p>
+      </div>
+
+      <div  class="form-div">
+        <label for="city">City :</label>
+        <input formControlName="city" type="text" name="city" id="city" placeholder="Enter City Name">
+      </div>
+
+      <div class="form-div">
+        <label for="state">Select State :</label>
+        <select formControlName="state" id="state" name="state">
+          <option value="">-- Select a State --</option>
+          <option value="andhra-pradesh">Andhra Pradesh</option>
+          <option value="arunachal-pradesh">Arunachal Pradesh</option>
+          <option value="assam">Assam</option>
+          <option value="bihar">Bihar</option>
+          <option value="chhattisgarh">Chhattisgarh</option>
+          <option value="goa">Goa</option>
+          <option value="gujarat">Gujarat</option>
+          <option value="haryana">Haryana</option>
+          <option value="himachal-pradesh">Himachal Pradesh</option>
+          <option value="jharkhand">Jharkhand</option>
+          <option value="karnataka">Karnataka</option>
+          <option value="kerala">Kerala</option>
+          <option value="madhya-pradesh">Madhya Pradesh</option>
+          <option value="maharashtra">Maharashtra</option>
+          <option value="manipur">Manipur</option>
+          <option value="meghalaya">Meghalaya</option>
+          <option value="mizoram">Mizoram</option>
+          <option value="nagaland">Nagaland</option>
+          <option value="odisha">Odisha</option>
+          <option value="punjab">Punjab</option>
+          <option value="rajasthan">Rajasthan</option>
+          <option value="sikkim">Sikkim</option>
+          <option value="tamil-nadu">Tamil Nadu</option>
+          <option value="telangana">Telangana</option>
+          <option value="tripura">Tripura</option>
+          <option value="uttar-pradesh">Uttar Pradesh</option>
+          <option value="uttarakhand">Uttarakhand</option>
+          <option value="west-bengal">West Bengal</option>
+          <option value="andaman-nicobar">Andaman and Nicobar Islands</option>
+          <option value="chandigarh">Chandigarh</option>
+          <option value="dadra-nagar-haveli">Dadra and Nagar Haveli and Daman and Diu</option>
+          <option value="delhi">Delhi</option>
+          <option value="jammu-kashmir">Jammu and Kashmir</option>
+          <option value="ladakh">Ladakh</option>
+          <option value="lakshadweep">Lakshadweep</option>
+          <option value="puducherry">Puducherry</option>
+        </select>
+        <p *ngIf="donateform.get('state')?.invalid">select state</p>
+      </div>
+
+      <div class="form-div">
+        <label for="country">Select Country :</label>
+        <select formControlName="country" id="country" name="country">
+          <option value="">-- Select a Country --</option>
+          <option value="afghanistan">Afghanistan</option>
+          <option value="australia">Australia</option>
+          <option value="bangladesh">Bangladesh</option>
+          <option value="brazil">Brazil</option>
+          <option value="canada">Canada</option>
+          <option value="china">China</option>
+          <option value="france">France</option>
+          <option value="germany">Germany</option>
+          <option value="india">India</option>
+          <option value="indonesia">Indonesia</option>
+          <option value="iran">Iran</option>
+          <option value="iraq">Iraq</option>
+          <option value="italy">Italy</option>
+          <option value="japan">Japan</option>
+          <option value="malaysia">Malaysia</option>
+          <option value="mexico">Mexico</option>
+          <option value="nepal">Nepal</option>
+          <option value="netherlands">Netherlands</option>
+          <option value="new-zealand">New Zealand</option>
+          <option value="nigeria">Nigeria</option>
+          <option value="pakistan">Pakistan</option>
+          <option value="russia">Russia</option>
+          <option value="saudi-arabia">Saudi Arabia</option>
+          <option value="singapore">Singapore</option>
+          <option value="south-africa">South Africa</option>
+          <option value="south-korea">South Korea</option>
+          <option value="sri-lanka">Sri Lanka</option>
+          <option value="sweden">Sweden</option>
+          <option value="switzerland">Switzerland</option>
+          <option value="thailand">Thailand</option>
+          <option value="uae">United Arab Emirates</option>
+          <option value="uk">United Kingdom</option>
+          <option value="usa">United States</option>
+          <option value="vietnam">Vietnam</option>
+        </select>
+      </div>
+
+      <div class="form-div">
+        <label for="panno">Pancard Number :</label>
+        <input formControlName="panno" type="text" name="panno" id="panno" placeholder="Enter Your Pancard Number">
+        <div *ngIf="donateform.get('panno')?.invalid && donateform.get('panno')?.touched">Invalid PAN(format:ABCDE1234f)</div>
+      </div>
+
+      <div class="form-div">
+        <label for="amount">Amount(Rs) :</label>
+        <input formControlName="amount" type="number" name="amount" id="amount" placeholder="Enter Amount to Donate"/>
+      </div>
+
+      <div class="form-div checkbox-div">
+        <input formControlName="termsandconditions" type="checkbox" placeholder="termsandconditions" id="termsandconditions" />
+        <label for="termsandconditions">I Agree to <a href="@terms.com">terms and conditions</a></label>
+        <div *ngIf="donateform.get('termsandconditions')?.invalid && donateform.get('termsandconditions')?.touched" style="color: red">
+          You must agree before submitting.
+        </div>
+      </div>
+      <button type="submit" [disabled]="donateform.invalid">Continue to Payments</button>
+    </form>
+  </div>
+</div>
+
+
+
+</div>

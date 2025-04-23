@@ -1,0 +1,23 @@
+<!-- hero.component.html -->
+<div class="relative h-screen w-full overflow-hidden ">
+  <!-- Background image with overlay for better text visibility -->
+  <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('/assets/hero.jpg');">
+    <!-- Overlay to make text more readable -->
+    <div class="absolute inset-0 bg-green-800 bg-opacity-70"></div>
+  </div>
+  
+  <!-- Text content -->
+  <div class="relative z-10 flex flex-col items-center justify-center h-full text-white px-4 md:px-8">
+    <h1 class="text-4xl md:text-6xl font-bold text-center mb-6">{{title}}</h1>
+    <p class="text-lg md:text-xl text-center max-w-2xl mb-10">{{subtitle}}</p>
+    
+    <div class="flex flex-col sm:flex-row gap-4">
+      <button routerLink="/program-list" class="bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-3 px-6 rounded-lg transition duration-300">
+        Event Registration
+      </button>
+      <button routerLink="/about" class="bg-transparent hover:bg-white hover:text-green-800 text-white font-semibold py-3 px-6 border-2 border-white rounded-lg transition duration-300">
+        Learn More About Us
+      </button>
+    </div>
+  </div>
+</div>

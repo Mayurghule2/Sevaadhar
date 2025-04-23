@@ -1,0 +1,39 @@
+<!-- Header -->
+<div class="bg-gradient-to-r from-greenCustom to-green-500 text-white py-6 text-center">
+  <h1 class="text-3xl font-bold mb-5">Contact Messages</h1>
+  <p class="text-xl opacity-90 pb-5">View and manage all received contact inquiries.</p>
+</div>
+
+<!-- Container -->
+<div class="max-w-7xl mx-auto mt-8 px-4">
+  <div class="bg-white rounded-lg shadow p-6">
+
+    <!-- Messages Table -->
+    <div *ngIf="messages.length > 0; else noMessages">
+      <table class="w-full text-left border-collapse">
+        <thead>
+          <tr class="bg-gray-100 border-b">
+            <th class="py-2 px-4">Name</th>
+            <th class="py-2 px-4">Email</th>
+            <th class="py-2 px-4">Contact</th>
+            <th class="py-2 px-4">Message</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let msg of messages" class="border-b">
+            <td class="py-2 px-4">{{ msg.name }}</td>
+            <td class="py-2 px-4">{{ msg.email }}</td>
+            <td class="py-2 px-4">{{ msg.contact }}</td>
+            <td class="py-2 px-4">{{ msg.message }}</td>
+            
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- No Messages Template -->
+    <ng-template #noMessages>
+      <p class="text-center text-gray-500 py-4">No contact messages found.</p>
+    </ng-template>
+  </div>
+</div>

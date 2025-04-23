@@ -1,0 +1,109 @@
+<div class="contact-container">
+  <h2 class="text-4xl font-bold text-green-700 mb-2">Contact Us</h2>
+  <div class="w-24 h-1 bg-yellow-400 mx-auto mb-6"></div>
+  <p class="subheading">Have questions or want to get involved? Reach out to us.</p>
+
+  <div class="contact-card ">
+    <div class="get-in-touch">
+      <h3 class="text-3xl font-bold ">Get in Touch</h3>
+      
+
+      <div class="flex justify-center mt-4">
+
+      <ul class="font-semibold flex flex-col items-start  text-white space-y-3">
+        <li class="flex items-start gap-4 text-left max-w-md text-3xl">
+          <i class="fa-solid fa-location-dot text-3xl mt-1"></i>
+          <p class="text-lg">
+            123 Maharaj Road, City Amravati,<br />
+            State Maharashtra, PIN Code
+          </p>
+        </li>
+      
+        <li class="flex items-start gap-4 text-left max-w-md">
+          <i class="fa-solid fa-phone-volume text-2xl mt-1"></i>
+          <p class="text-lg">
+            +91 000000000<br />
+            +91 000000000
+          </p>
+        </li>
+      
+        <li class="flex items-start gap-4 text-left max-w-md">
+          <i class="fa-solid fa-envelope text-2xl mt-1"></i>
+          <p class="text-lg">
+            info@sevaadhaar.org<br />
+            support@sevaadhaar.org
+          </p>
+        </li>
+      
+        <li class="flex items-start gap-4 text-left max-w-md">
+          <i class="fa-solid fa-clock text-2xl mt-1"></i>
+          <p class="text-lg">
+            Monday – Friday: 9:00 AM - 6:00 PM<br />
+            Saturday: 10:00 AM - 2:00 PM
+          </p>
+        </li>
+      </ul>
+    </div>
+      
+      
+    </div>
+
+    <div class="send-message">
+      <h3 class="text-2xl font-bold">Send a Message</h3>
+      <form (ngSubmit)="sendMessage()" #contactForm="ngForm">
+        
+        <!-- Name -->
+        <input type="text" 
+               placeholder="Your Name" 
+               [(ngModel)]="contact.name" 
+               name="name" 
+               required 
+               #name="ngModel" />
+        <div *ngIf="name.invalid && name.touched" class="text-red-500 text-sm">
+          Name is required.
+        </div>
+    
+        <!-- Email -->
+        <input type="email" 
+               placeholder="Your Email" 
+               [(ngModel)]="contact.email" 
+               name="email" 
+               required 
+               email 
+               #email="ngModel" />
+        <div *ngIf="email.invalid && email.touched" class="text-red-500 text-sm">
+          <div *ngIf="email.errors?.['required']">Email is required.</div>
+          <div *ngIf="email.errors?.['email']">Enter a valid email.</div>
+        </div>
+    
+        <!-- Phone Number -->
+        <input type="text" 
+               placeholder="Phone Number" 
+               [(ngModel)]="contact.contact" 
+               name="contact" 
+               required 
+               pattern="^[0-9]{10}$" 
+               #contactInput="ngModel" />
+        <div *ngIf="contactInput.invalid && contactInput.touched" class="text-red-500 text-sm">
+          <div *ngIf="contactInput.errors?.['required']">Phone number is required.</div>
+          <div *ngIf="contactInput.errors?.['pattern']">Enter a valid 10-digit phone number.</div>
+        </div>
+    
+        <!-- Message -->
+        <textarea rows="4" 
+                  placeholder="Your Message" 
+                  [(ngModel)]="contact.message" 
+                  name="message" 
+                  required 
+                  #message="ngModel"></textarea>
+        <div *ngIf="message.invalid && message.touched" class="text-red-500 text-sm">
+          Message is required.
+        </div>
+    
+        <!-- Submit Button -->
+        <button type="submit" [disabled]="contactForm.invalid">Submit</button>
+      </form>
+    </div>
+    
+  </div>
+</div>

@@ -1,0 +1,125 @@
+<!-- app.component.html -->
+<div class="max-w-full mx-auto p-5 flex flex-col items-center  bg-gradient-to-r from-greenCustom to-green-400 ">
+
+  <div class="max-w-6xl bg-white p-5 rounded-lg shadow-lg mt-10 ">
+    
+
+  
+  <h1 class="text-2xl font-bold text-center mb-6 mt-6">Program Application Form</h1>
+  
+  <div class="bg-gray-100 p-4 rounded mb-5 border-l-4 border-green-500" *ngIf="program">
+    
+    
+    <div class="text-xl font-bold text-gray-800 mb-1">{{ program.title }}</div>
+    <div class="text-md text-gray-600 mb-5">
+      Date: {{ program.startDate | date: 'longDate' }} to {{ program.endDate | date: 'longDate' }}<br>
+      Type: {{ program.type }}<br>
+      Location: {{ program.location }}
+    </div>
+    <img [src]="'http://localhost:9090/api/programs/uploads/' + program.imageFileName" alt="{{ program.title }}" class="w-full h-full" />
+  </div>
+  
+  <div class="bg-blue-50 p-3 mb-4 rounded border-l-4 border-blue-500">
+    <div class="font-bold text-blue-900 mb-1">Don't have a Volunteer ID?</div>
+    <p class="text-sm">
+      If you don't have a Volunteer ID yet, please 
+      <a href="/volunteer-registration"  class="text-blue-600 hover:underline">
+        register as a volunteer first
+      </a> 
+      to get your ID. You'll need this ID to complete your application.
+    </p>
+  </div>
+  
+  <form [formGroup]="programApplicationForm" (ngSubmit)="onSubmit()">
+    <!-- Hidden field for program_id -->
+    <input type="hidden" formControlName="program_id">
+    
+    <div class="mb-4">
+      <label for="volunteer_id" class="block font-bold mb-1 text-gray-700">
+        Volunteer ID <span class="text-red-600">*</span>
+      </label>
+      <input 
+        type="number" 
+        id="volunteer_id" 
+        formControlName="volunteer_id"
+        class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+      >
+      <div class="text-xs text-gray-500 mt-1">Your unique volunteer identification number</div>
+      <div *ngIf="programApplicationForm.get('volunteer_id')?.invalid && 
+                 programApplicationForm.get('volunteer_id')?.touched" 
+           class="text-red-500 text-xs mt-1">
+        Volunteer ID is required
+      </div>
+    </div>
+    
+    <div class="mb-4">
+      <label for="desired_role" class="block font-bold mb-1 text-gray-700">
+        Desired Role <span class="text-red-600">*</span>
+      </label>
+      <select 
+        id="desired_role" 
+        formControlName="desired_role"
+        class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+      >
+        <option value="">Select a role</option>
+        <option value="Coordinator">Coordinator</option>
+        <option value="Helper">Helper</option>
+        <option value="Teacher">Teacher</option>
+        <option value="Support Staff">Support Staff</option>
+        <option value="Team Leader">Team Leader</option>
+      </select>
+      <div *ngIf="programApplicationForm.get('desired_role')?.invalid && 
+                 programApplicationForm.get('desired_role')?.touched" 
+           class="text-red-500 text-xs mt-1">
+        Please select a role
+      </div>
+    </div>
+    
+    <div class="mb-4">
+      <label for="applied_on" class="block font-bold mb-1 text-gray-700">
+        Application Date <span class="text-red-600">*</span>
+      </label>
+      <input 
+        type="date" 
+        id="applied_on" 
+        formControlName="applied_on"
+        class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+      >
+      <div *ngIf="programApplicationForm.get('applied_on')?.invalid && 
+                 programApplicationForm.get('applied_on')?.touched" 
+           class="text-red-500 text-xs mt-1">
+        Application date is required
+      </div>
+    </div>
+    <div class="mb-4" *ngIf="program">
+      <label class="inline-flex items-start space-x-2">
+        <input 
+          type="checkbox" 
+          formControlName="acceptTerms"
+          class="mt-1"
+        >
+        <span class="text-gray-700 text-sm">
+          I accept the 
+          <a 
+            [href]="'http://localhost:9090/api/programs/uploads/' + program.brochureFileName" 
+            target="_blank" 
+            class="text-blue-600 hover:underline"
+          >
+            terms and conditions
+          </a>
+        </span>
+      </label>
+      <div *ngIf="programApplicationForm.get('acceptTerms')?.invalid && programApplicationForm.get('acceptTerms')?.touched" class="text-red-500 text-xs mt-1">
+        You must accept the terms and conditions to proceed
+      </div>
+    </div>
+    
+    <button 
+      type="submit" 
+      class="w-full bg-green-700 text-white py-2 px-4 rounded hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 transition font-semibold"
+    >
+      Submit Application
+    </button>
+  </form>
+</div>
+</div>
