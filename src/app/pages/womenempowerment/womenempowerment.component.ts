@@ -50,7 +50,7 @@ export class WomenempowermentComponent implements OnInit {
     {
       title: 'How Sunita\'s Self-Help Group Transformed Her Village',
       meta: 'Self-Help Group, Rajpur District',
-      description: 'Sunita started with a small savings group of 12 women. With guidance from SevaAdhaar, they pooled resources to start a community dairy business. Their collective now manages 25 cows, supplies milk to the local market, and has established a micro-credit system that has funded education for over 30 children.',
+      description: 'Sunita started with a small savings group of 12 women. With guidance from OpenFuture Charity and Foundational Trust, they pooled resources to start a community dairy business. Their collective now manages 25 cows, supplies milk to the local market, and has established a micro-credit system that has funded education for over 30 children.',
       image: 'https://www.shutterstock.com/image-photo/mother-child-rural-india-diamond-260nw-2085894448.jpg'
     },
     {

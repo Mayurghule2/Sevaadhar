@@ -6,8 +6,8 @@ export interface Program {
   location: string;
   startDate: string; // ISO string format e.g., "2025-04-18T00:00:00Z"
   endDate: string;
-  imageUrl: string;
-  brochureUrl: string;
+  imageFileName: string;
+  brochureFileName: string;
   contactEmail: string;
   contactPhone: string;
   capacity: number;
