@@ -27,6 +27,7 @@ import { EventregistrationComponent } from './pages/admin/eventregistration/even
 import { ProgramlistComponent } from './pages/programlist/programlist.component';
 import { EventlistComponent } from './pages/admin/eventlist/eventlist.component';
 import { MessagelistComponent } from './pages/admin/messagelist/messagelist.component';
+import { ProgramregisteredvolunteerComponent } from './pages/admin/programregisteredvolunteer/programregisteredvolunteer.component';
 
 // const routes: Routes = [
 //   { path: 'about', component: AboutusComponent },
@@ -90,6 +91,7 @@ const routes: Routes = [
       {path: 'volunteer-details', component: VolunteerdetailsComponent},
       {path: 'event-registration', component: EventregistrationComponent},
       {path: 'event-list', component: EventlistComponent},
+      {path: 'program-registered-volunteer', component: ProgramregisteredvolunteerComponent},
       {path: 'message-list', component: MessagelistComponent},
     ]
   },

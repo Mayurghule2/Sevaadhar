@@ -47,6 +47,7 @@ import { AdminlayoutComponent } from './adminlayout/adminlayout.component';
 import { ProgramlistComponent } from './pages/programlist/programlist.component';
 import { EventlistComponent } from './pages/admin/eventlist/eventlist.component';
 import { MessagelistComponent } from './pages/admin/messagelist/messagelist.component';
+import { ProgramregisteredvolunteerComponent } from './pages/admin/programregisteredvolunteer/programregisteredvolunteer.component';
 
 
 @NgModule({
@@ -91,6 +92,7 @@ import { MessagelistComponent } from './pages/admin/messagelist/messagelist.comp
     ProgramlistComponent,
     EventlistComponent,
     MessagelistComponent,
+    ProgramregisteredvolunteerComponent,
     
     
    

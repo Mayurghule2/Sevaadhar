@@ -1,0 +1,56 @@
+<div class="bg-gradient-to-r from-greenCustom to-green-500 text-white py-8 text-center">
+  <h1 class="text-3xl font-bold mb-2">Admin: Program Applications</h1>
+  <p class="text-lg opacity-90">View and manage volunteer applications for programs</p>
+</div>
+
+<div class="max-w-7xl mx-auto mt-8 px-4">
+  <div class="bg-white rounded-lg shadow p-6">
+    <!-- Error Message -->
+    <div *ngIf="errorMessage" class="bg-red-100 p-3 mb-4 rounded border-l-4 border-red-500 text-red-700">
+      {{ errorMessage }}
+    </div>
+
+    <!-- Loading Spinner -->
+    <div *ngIf="loading" class="text-center mb-4">
+      <p class="text-gray-600">Loading applications...</p>
+    </div>
+
+    <!-- Applications Table -->
+    <div class="overflow-x-auto" *ngIf="!loading && applications && applications.length > 0">
+      <table class="w-full text-left border-collapse">
+        <thead>
+          <tr class="bg-gray-100 border-b">
+            <th class="py-2 px-4">Program Name</th>
+            <th class="py-2 px-4">Volunteer ID</th>
+            <th class="py-2 px-4">Volunteer Name</th>
+            <th class="py-2 px-4">Desired Role</th>
+            <th class="py-2 px-4">Applied On</th>
+            <th class="py-2 px-4">Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let app of applications" class="border-b hover:bg-gray-50">
+            <td class="py-2 px-4 font-semibold">{{ app.programTitle || 'N/A' }}</td>
+            <td class="py-2 px-4">{{ app.volunteerId || 'N/A' }}</td>
+            <td class="py-2 px-4">{{ app.volunteerName || 'N/A' }}</td>
+            <td class="py-2 px-4">{{ app.desiredRole || 'N/A' }}</td>
+            <td class="py-2 px-4">{{ app.appliedOn | date: 'mediumDate' }}</td>
+            <td class="py-2 px-4">
+              <button
+                (click)="deleteApplication(app.id!)"
+                class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
+              >
+                Delete
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- No Applications Message -->
+    <div *ngIf="!loading && applications && applications.length === 0" class="text-center mt-4">
+      <p class="text-gray-600">No applications found.</p>
+    </div>
+  </div>
+</div>
